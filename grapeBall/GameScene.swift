@@ -9,37 +9,75 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    let background = SKSpriteNode(imageNamed: "back");
+    let ball = SKSpriteNode(imageNamed: "ball");
+    let grape = SKSpriteNode(imageNamed: "grape");
+
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 65;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
+        self.size = CGSizeMake(320, 568);
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame);
+        self.physicsBody?.restitution = 1.0;
+        self.physicsBody?.friction = 0;
+        self.physicsBody?.linearDamping = 0;
+        background.position = CGPointMake(0, 0);
+        background.anchorPoint = CGPointMake(0, 0);
+        self.addChild(background);
+        makeBall()
+        makeGrape();
+        self.physicsWorld.contactDelegate = self;
+    }
+    func makeBall() {
+        ball.position = CGPointMake(10, 300);
+        ball.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "ball"), size: ball.size);
+        ball.physicsBody?.affectedByGravity = false;
+        ball.physicsBody?.restitution = 1.0;
+        ball.physicsBody?.friction = 0;
+        ball.physicsBody?.linearDamping = 0;
+        ball.physicsBody?.contactTestBitMask = 1;
+
+        self.addChild(ball);
+    }
+    
+    func makeGrape() {
+        grape.position = CGPointMake(120, 300);
+        grape.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "grape"), size: grape.size);
+        grape.physicsBody?.affectedByGravity = false;
+        grape.physicsBody?.dynamic = false;
+        grape.physicsBody?.restitution = 1;
+        grape.physicsBody?.contactTestBitMask = 1;
         
-        self.addChild(myLabel)
+        self.addChild(grape);
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
-        
-        for touch in (touches as! Set<UITouch>) {
-            let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
+        if let touch: AnyObject = touches.first {
+            ball.physicsBody?.applyImpulse(CGVector(dx: 4, dy:1));
         }
+        
     }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+}
+
+extension GameScene:SKPhysicsContactDelegate {
+    func didBeginContact(contact: SKPhysicsContact) {
+        if contact.bodyA.node == grape || contact.bodyB.node == grape {
+            print("contact grape ! ");
+            let particle = SKEmitterNode(fileNamed: "MyParticle")
+            particle.position = grape.position;
+            let durationAction = SKAction.waitForDuration(1)
+            let removeAction = SKAction.removeFromParent();
+            let sequenceAction = SKAction.sequence([durationAction, removeAction]);
+            particle.runAction(sequenceAction);
+            grape.removeFromParent()
+
+            self.addChild(particle);
+            
+        }
     }
 }

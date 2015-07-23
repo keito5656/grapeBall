@@ -15,6 +15,8 @@
 		30E846B81B5E44BB006C3111 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E846B71B5E44BB006C3111 /* Images.xcassets */; };
 		30E846BB1B5E44BB006C3111 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30E846B91B5E44BB006C3111 /* LaunchScreen.xib */; };
 		30E846C71B5E44BB006C3111 /* grapeBallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E846C61B5E44BB006C3111 /* grapeBallTests.swift */; };
+		30E846D21B5E4EB9006C3111 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 30E846D01B5E4EB9006C3111 /* MyParticle.sks */; };
+		30E846D31B5E4EB9006C3111 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E846D11B5E4EB9006C3111 /* spark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		30E846C01B5E44BB006C3111 /* grapeBallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = grapeBallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E846C51B5E44BB006C3111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30E846C61B5E44BB006C3111 /* grapeBallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grapeBallTests.swift; sourceTree = "<group>"; };
+		30E846D01B5E4EB9006C3111 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		30E846D11B5E4EB9006C3111 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,8 @@
 				30E846B71B5E44BB006C3111 /* Images.xcassets */,
 				30E846B91B5E44BB006C3111 /* LaunchScreen.xib */,
 				30E846AA1B5E44BB006C3111 /* Supporting Files */,
+				30E846D01B5E4EB9006C3111 /* MyParticle.sks */,
+				30E846D11B5E4EB9006C3111 /* spark.png */,
 			);
 			path = grapeBall;
 			sourceTree = "<group>";
@@ -199,9 +205,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				30E846BB1B5E44BB006C3111 /* LaunchScreen.xib in Resources */,
+				30E846D31B5E4EB9006C3111 /* spark.png in Resources */,
 				30E846B81B5E44BB006C3111 /* Images.xcassets in Resources */,
 				30E846AF1B5E44BB006C3111 /* GameScene.sks in Resources */,
 				30E846B61B5E44BB006C3111 /* Main.storyboard in Resources */,
+				30E846D21B5E4EB9006C3111 /* MyParticle.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
